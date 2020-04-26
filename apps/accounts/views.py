@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from apps.accounts.forms import UserEditForm, SignupForm
 from apps.accounts.models import User
+from apps.core.models import Event
 
 def log_in(request):
     if request.method == 'POST':
@@ -15,7 +16,7 @@ def log_in(request):
             # User has specified valid credentials, have user log-in, and then
             # redirect back home
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('../users/' + request.user.username)
     else:
         form = AuthenticationForm()
 
@@ -34,7 +35,7 @@ def sign_up(request):
             # Log-in the user right away, then redirect home
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
-            return redirect('home')
+            return redirect('../users/' + request.user.username)
     else:
         form = SignupForm()
 
@@ -49,17 +50,11 @@ def logout_view(request):
     messages.success(request, 'Logged out.')
     return redirect('home')
 
-
-def view_all_users(request):
-    all_users = User.objects.all()
-    context = {
-        'users': all_users,
-    }
-    return render(request, 'accounts/view_all_users.html', context)
-
-
+@login_required
 def view_profile(request, username):
     user = User.objects.get(username=username)
+    events = Event.objects.order_by('-created')
+    events_by_user = events.filter(create_event_user=user)
 
     if request.user == user:
         is_viewing_self = True
@@ -69,6 +64,7 @@ def view_profile(request, username):
     context = {
         'user': user,
         'is_viewing_self': is_viewing_self,
+        'events': events_by_user,
     }
     return render(request, 'accounts/profile_page.html', context)
 
