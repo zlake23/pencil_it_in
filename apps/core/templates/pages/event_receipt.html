@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Pencil It In - Event Details
+{% endblock title %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+          <div class="card-body">
+              <h2 class="text-center">You're Invited!</h2>
+              <hr >
+              <h4>{{ event_title }}</h4>
+              <p><strong>Location:</strong> {{ location }}</p>
+              <p><strong>Start Date:</strong> {{ start }}</p>
+              <p><strong>End Date:</strong> {{ end }}</p>
+              <p><strong>Notes:</strong> {{ message }}</p>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+
+
