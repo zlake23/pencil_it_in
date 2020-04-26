@@ -1,15 +1,66 @@
 /* Custom CSS goes here */
 
-.navbar {
-    background: linear-gradient(135deg, #f2f9fe 0%, #d6f0fd 100%);
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif; color: black;}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.8;
 }
 
-.card-user {
-    max-width: 80px;
+.navbar {
+    background: linear-gradient(135deg, #f2f9fe 0%, #fea096 100%);
 }
 
 .navbar-avatar {
     height: 30px;
     margin-top: -10px;
     margin-bottom: -10px;
+}
+
+.header-logo {
+    text-align: center;
+}
+.header-logo img {
+    max-height: 70vh;
+}
+
+main {
+    flex: 1 1 auto;
+}
+
+.card {
+    border: 5px solid #fccb00 ;
+
+}
+
+.card-user {
+    max-width: 80px;
+}
+
+.btn {
+    color: #ffffff ;
+    background-color: #fea096;
+    border-color: #fccb00;
+
+}
+
+.btn:hover {
+    background-color: #fccb00;
+    border-color: #fea096;
+}
+
+a.nav-link {
+    color: black;
+}
+
+a.navbar-brand {
+    color: black;
+}
+
+.bg-4 {
+    background-color: #fea096;
+    color: #fff;
 }
